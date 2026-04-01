@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Parmeshwar ji &amp; Kishuu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ====== RESET ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #ff9a9e, #fad0c4 35%, #fbc2eb 70%, #a18cd1);
+      --primary: #ff4b6e;
+      --primary-dark: #e03555;
+      --accent: #fbd38d;
+      --text-main: #222222;
+      --text-soft: #444444;
+      --card-bg: rgba(255, 255, 255, 0.16);
+      --card-border: rgba(255, 255, 255, 0.45);
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.35);
+      --radius-xl: 28px;
+      --radius-pill: 999px;
+      --blur: 24px;
+      --transition-fast: 180ms ease-out;
+      --transition-med: 260ms ease;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins", "Segoe UI", sans-serif;
+      background-image: var(--bg-gradient);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* ====== MAIN LAYOUT ====== */
+    .shell {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .shell {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    /* ====== LEFT PANEL ====== */
+    .hero-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.68));
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
+      padding: 32px 32px 28px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      margin-bottom: 18px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b21a8;
+      font-weight: 600;
+    }
+
+    .hero-tag-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.35);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 2.6vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-gradient-word {
+      background: linear-gradient(135deg, #ff4b6e, #ff9770);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .hero-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .meta-card {
+      border-radius: 18px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      display: grid;
+      gap: 2px;
+    }
+
+    .meta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(248, 250, 252, 0.85);
+      color: #4b5563;
+      gap: 6px;
+      margin-top: 4px;
+      width: fit-content;
+    }
+
+    .meta-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f97316;
+    }
+
+    .hero-footer-note {
+      font-size: 0.8rem;
+      color: #6b7280;
+      border-top: 1px dashed rgba(148, 163, 184, 0.5);
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-footer-note span strong {
+      font-weight: 600;
+    }
+
+    .hero-footer-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 3px 10px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    .hero-footer-chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    /* Decorative heart */
+    .heart-orbit {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 1px dashed rgba(248, 113, 113, 0.5);
+      top: -80px;
+      right: -120px;
+    }
+
+    .heart-orbit::before {
+      content: "♥";
+      position: absolute;
+      font-size: 56px;
+      color: rgba(248, 113, 113, 0.9);
+      top: 60px;
+      left: 36px;
+      text-shadow: 0 18px 35px rgba(185, 28, 28, 0.55);
+      animation: floatHeart 3.6s ease-in-out infinite;
+    }
+
+    @keyframes floatHeart {
+      0%, 100% {
+        transform: translateY(0) rotate(-12deg);
+      }
+      50% {
+        transform: translateY(-16px) rotate(-4deg);
+      }
+    }
+
+    /* ====== RIGHT PANEL (PROPOSAL) ====== */
+    .proposal-card {
+      backdrop-filter: blur(var(--blur));
+      background: linear-gradient(155deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.85));
+      border-radius: 32px;
+      padding: 26px 24px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      box-shadow: var(--shadow-soft);
+      color: #e5e7eb;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proposal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .proposal-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .proposal-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 11px;
+      color: #e5e7eb;
+      background: radial-gradient(circle at top left, rgba(251, 113, 133, 0.28), rgba(15, 23, 42, 0.9));
+    }
+
+    .proposal-body {
+      font-size: 0.95rem;
+      color: #d1d5db;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .proposal-body p + p {
+      margin-top: 10px;
+    }
+
+    .proposal-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(251, 191, 36, 0.5);
+      color: #fbbf24;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .proposal-metas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 0.78rem;
+    }
+
+    .proposal-meta-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+
+    /* ====== BUTTON AREA ====== */
+    .cta-wrapper {
+      margin-top: 6px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+
+    .cta-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #9ca3af;
+    }
+
+    .btn-row {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: relative;
+      height: 50px;
+      align-items: center;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .btn-yes {
+      position: relative;
+      padding: 11px 26px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--primary), #ff9770);
+      color: #f9fafb;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 28px rgba(220, 38, 38, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+      overflow: hidden;
+    }
+
+    .btn-yes-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 2px solid rgba(248, 250, 252, 0.9);
+      background: rgba(248, 250, 252, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .btn-yes:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(185, 28, 28, 0.65);
+      filter: brightness(1.05);
+    }
+
+    .btn-yes:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 20px rgba(127, 29, 29, 0.45);
+    }
+
+    .btn-yes:disabled {
+      cursor: default;
+      opacity: 0.7;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Yes click animation */
+    .btn-yes.pulse {
+      animation: yesPulse 0.6s ease-out forwards;
+    }
+
+    @keyframes yesPulse {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.12); box-shadow: 0 0 0 14px rgba(248, 250, 252, 0.35); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(248, 250, 252, 0); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 6px;
+      height: 10px;
+      border-radius: 2px;
+      background: #facc15;
+      opacity: 0;
+      animation: confettiFall 900ms ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translate3d(0, -10px, 0) rotateZ(0deg);
+        opacity: 1;
+      }
+      70% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(0, 26px, 0) rotateZ(180deg);
+        opacity: 0;
+      }
+    }
+
+    .btn-no {
+      position: absolute;
+      right: 40%;
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5e7eb;
+      font-weight: 500;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      transition: transform 120ms ease-out, background 160ms ease, color 160ms ease;
+      white-space: nowrap;
+      z-index: 3;
+    }
+
+    .btn-no:hover {
+      background: rgba(31, 41, 55, 0.96);
+    }
+
+    .btn-no.disabled {
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    .cta-message {
+      font-size: 0.84rem;
+      color: #9ca3af;
+      min-height: 18px;
+    }
+
+    .cta-message strong {
+      color: #e5e7eb;
+    }
+
+    /* Success State */
+    .success-banner {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(45, 212, 191, 0.22), transparent 50%),
+                  radial-gradient(circle at bottom, rgba(251, 191, 36, 0.17), transparent 50%),
+                  rgba(15, 23, 42, 0.96);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+      transition: opacity var(--transition-med), transform var(--transition-med);
+    }
+
+    .success-banner.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .success-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 2px solid rgba(34, 197, 94, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbf7d0;
+      font-size: 26px;
+      margin-bottom: 6px;
+      box-shadow: 0 14px 40px rgba(34, 197, 94, 0.65);
+    }
+
+    .success-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #f9fafb;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .success-text {
+      font-size: 0.94rem;
+      color: #d1d5db;
+      max-width: 340px;
+      line-height: 1.7;
+    }
+
+    .success-sub {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    /* ====== RESPONSIVE TWEAKS ====== */
+    @media (max-width: 900px) {
+      body {
+        padding: 20px 16px;
+      }
+
+      .hero-card {
+        padding: 22px 18px 18px;
+      }
+
+      .proposal-card {
+        padding: 20px 18px 18px;
+      }
+
+      .btn-row {
+        height: 90px;
+        justify-content: flex-start;
+      }
+
+      .btn-no {
+        right: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-meta-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <!-- LEFT SIDE: RELATIONSHIP INTRO -->
+    <section class="hero-card">
+      <div class="heart-orbit"></div>
+
+      <div class="hero-tag">
+        <span class="hero-tag-dot"></span>
+        <span>KISHUU &amp; RASHGULLA</span>
+      </div>
+
+      <h1 class="hero-title">
+        Not our first chapter,<br />
+        just a <span class="hero-gradient-word">beautiful continuation</span>.
+      </h1>
+
+      <p class="hero-subtitle">
+        This page is not about asking for something new, it is about choosing you again — after every smile, every fight, every late-night chats, and every moment that made us “us”.
+      </p>
+
+      <div class="hero-meta-grid">
+        <div class="meta-card">
+          <span class="meta-label">FROM</span>
+          <span class="meta-value">Aapki pyaari si, nanhi si kishuu</span>
+          <span class="meta-pill">
+            <span class="meta-pill-dot"></span>
+            Still hopelessly in love
+          </span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">TO</span>
+          <span class="meta-value">My Mr. Sir ji</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">STATUS</span>
+          <span class="meta-value">Same relationship, deeper bond</span>
+        </div>
+      </div>
+
+      <div class="hero-footer-note">
+        <span>
+          Same two people, same <strong>love</strong>, just more stories between us.
+        </span>
+        <span class="hero-footer-chip">
+          <span class="hero-footer-chip-dot"></span>
+          Relationship v2.0 • Upgraded Feelings
+        </span>
+      </div>
+    </section>
+
+    <!-- RIGHT SIDE: RE-PROPOSAL -->
+    <section class="proposal-card">
+      <header class="proposal-header">
+        <div>
+          <div class="proposal-title">Asking You Again</div>
+        </div>
+        <div class="proposal-badge">ONLY FOR RASHGULLA • FROM KISHUU</div>
+      </header>
+
+      <div class="proposal-highlight">
+        <span>💬</span>
+        <span>I would still choose you, every single time.</span>
+      </div>
+
+      <div class="proposal-body">
+        <p>
+          We already know each other’s real sides — the cute, the dramatic, the stubborn and the soft ones. After all of that, I still look at you and think, “Yes, he is my person.”
+        </p>
+        <p>
+          This isn’t a new beginning, This is me, your Kishuu, standing in the same love with more trust, more comfort, and even more reasons to stay by your side.
+        </p>
+      </div>
+
+      <div class="proposal-metas">
+        <div class="proposal-meta-pill">Memories built, many more to come</div>
+        <div class="proposal-meta-pill">Fights included, love undefeated</div>
+        <div class="proposal-meta-pill">You &amp; me, still a team</div>
+        <div class="proposal-meta-pill">Future: Us, together</div>
+      </div>
+
+      <div class="cta-wrapper">
+        <div class="cta-label">Your response</div>
+
+        <div class="btn-row">
+          <button id="yesBtn" class="btn-yes" type="button">
+            <span>Yes, again</span>
+            <span class="btn-yes-icon">✓</span>
+          </button>
+
+          <button id="noBtn" class="btn-no" type="button">
+            No, never
+          </button>
+        </div>
+
+        <div id="ctaMessage" class="cta-message">
+          Take your time, but remember, I am already yours, just waiting for you to say <strong>yes again</strong>.
+        </div>
+      </div>
+
+      <!-- SUCCESS OVERLAY -->
+      <div id="successBanner" class="success-banner">
+        <div class="success-icon">💍</div>
+        <div class="success-title">You said Yes again!</div>
+        <p class="success-text">
+          We didn’t start today, but today you chose us again — and that means more than any first proposal ever could.
+        </p>
+        <p class="success-sub">
+          PS: Save this page — it’s our official “yes again” moment.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const ctaMessage = document.getElementById("ctaMessage");
+    const successBanner = document.getElementById("successBanner");
+
+    let noClickCount = 0;
+
+    function moveNoButton() {
+      const parent = noBtn.parentElement;
+      const parentRect = parent.getBoundingClientRect();
+
+      const maxX = parentRect.width - noBtn.offsetWidth - 10;
+      const maxY = parentRect.height - noBtn.offsetHeight - 10;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    }
+
+    // When mouse goes near the "No" button, move it
+    noBtn.addEventListener("mouseenter", () => {
+      if (noBtn.classList.contains("disabled")) return;
+      moveNoButton();
+      ctaMessage.innerHTML = "The universe has quietly removed the ‘No’ option for us.";
+    });
+
+    // If somehow clicked, still prevent choosing "No"
+    noBtn.addEventListener("click", () => {
+      if (noBtn.classList.contains("disabled")) return;
+
+      noClickCount++;
+      moveNoButton();
+
+      if (noClickCount === 1) {
+        ctaMessage.innerHTML = "Nice try, Mr. Roshan. But you already know my heart doesn’t agree with ‘No’.";
+      } else if (noClickCount === 2) {
+        ctaMessage.innerHTML = "System update: ‘No’ is no longer supported in this relationship.";
+      } else {
+        ctaMessage.innerHTML = "Error ❤️: ‘No’ failed to load. Please click on ‘Yes, again’.";
+      }
+    });
+
+    function spawnConfetti(btn) {
+      const rect = btn.getBoundingClientRect();
+      const colors = ["#f97316", "#22c55e", "#38bdf8", "#e11d48", "#facc15"];
+
+      for (let i = 0; i < 14; i++) {
+        const piece = document.createElement("span");
+        piece.classList.add("confetti");
+        piece.style.background = colors[i % colors.length];
+
+        const offsetX = (Math.random() - 0.5) * 60;
+        const offsetY = (Math.random() - 0.5) * 20;
+
+        piece.style.left = rect.width / 2 + offsetX + "px";
+        piece.style.top = rect.height / 2 + offsetY + "px";
+
+        btn.appendChild(piece);
+
+        setTimeout(() => {
+          piece.remove();
+        }, 900);
+      }
+    }
+
+    yesBtn.addEventListener("click", () => {
+      // Animated yes
+      yesBtn.classList.add("pulse");
+      spawnConfetti(yesBtn);
+
+      // Lock both buttons
+      yesBtn.disabled = true;
+      noBtn.classList.add("disabled");
+      noBtn.style.pointerEvents = "none";
+
+      ctaMessage.innerHTML = "Thank you for choosing me again. You have no idea how happy this makes me.";
+
+      // Show success overlay
+      setTimeout(() => {
+        successBanner.classList.add("visible");
+      }, 550);
+    });
+  </script>
+</body>
+</html>

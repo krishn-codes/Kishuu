@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>From Kishuu to her man</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* ====== RESET & BASE (same style quality as proposal page) ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-gradient: radial-gradient(circle at top left, #ff9a9e, #fad0c4 35%, #fbc2eb 70%, #a18cd1);
+      --primary: #ff4b6e;
+      --primary-dark: #e03555;
+      --accent: #fbd38d;
+      --text-main: #222222;
+      --text-soft: #444444;
+      --card-bg: rgba(255, 255, 255, 0.16);
+      --card-border: rgba(255, 255, 255, 0.45);
+      --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.35);
+      --radius-xl: 28px;
+      --radius-pill: 999px;
+      --blur: 24px;
+      --transition-fast: 180ms ease-out;
+      --transition-med: 260ms ease;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins", "Segoe UI", sans-serif;
+      background-image: var(--bg-gradient);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .front-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.75));
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
+      padding: 30px 26px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .front-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      margin-bottom: 18px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b21a8;
+      font-weight: 600;
+    }
+
+    .front-tag-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 7px rgba(34, 197, 94, 0.35);
+    }
+
+    .front-title {
+      font-size: clamp(2.1rem, 2.5vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -0.04em;
+    }
+
+    .front-gradient-word {
+      background: linear-gradient(135deg, #ff4b6e, #ff9770);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .front-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
+
+    .front-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 720px) {
+      .front-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .front-text-block p + p {
+      margin-top: 10px;
+    }
+
+    .name-line {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .name-line span {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .shy-emoji-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .shy-emoji {
+      font-size: 5.2rem;
+      line-height: 1;
+      filter: drop-shadow(0 18px 30px rgba(248, 113, 113, 0.55));
+      animation: shyBounce 2.3s ease-in-out infinite;
+    }
+
+    @keyframes shyBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      40%      { transform: translateY(-8px) scale(1.04); }
+      70%      { transform: translateY(0) scale(1); }
+    }
+
+    .shy-caption {
+      font-size: 0.9rem;
+      color: #6b7280;
+      text-align: center;
+      max-width: 220px;
+    }
+
+    .cta-row {
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(148, 163, 184, 0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cta-text {
+      font-size: 0.86rem;
+      color: #6b7280;
+    }
+
+    .cta-text strong {
+      color: #111827;
+    }
+
+    .btn-open {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+      padding: 11px 26px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(135deg, var(--primary), #ff9770);
+      color: #f9fafb;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 28px rgba(220, 38, 38, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-open-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 2px solid rgba(248, 250, 252, 0.9);
+      background: rgba(248, 250, 252, 0.25);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .btn-open:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(185, 28, 28, 0.65);
+      filter: brightness(1.05);
+    }
+
+    .btn-open:active {
+      transform: translateY(0);
+      box-shadow: 0 8px 20px rgba(127, 29, 29, 0.45);
+    }
+
+    /* Decorative soft shapes */
+    .blob {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(244, 114, 182, 0.55), transparent 65%);
+      top: -60px;
+      right: -40px;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .blob-2 {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(56, 189, 248, 0.38), transparent 65%);
+      bottom: -60px;
+      left: -40px;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="front-card">
+      <div class="blob"></div>
+      <div class="blob-2"></div>
+
+      <div class="front-tag">
+        <span class="front-tag-dot"></span>
+        <span>KISHUU → RASHGULLA</span>
+      </div>
+
+      <h1 class="front-title">
+        I fell for you once…<br />
+        and now I am <span class="front-gradient-word">falling all over again</span>.
+      </h1>
+
+      <div class="front-grid">
+        <div class="front-text-block">
+          <p class="front-subtitle">
+            This is not a new crush or a first-time proposal. This is me, Kishuu, realising that after everything we’ve been through, my heart still chooses you, and somehow it loves you even more now.
+          </p>
+          <p class="front-subtitle">
+            I am not asking, “Will you start something with me?” — I’m quietly saying, “I am still in love with you, and this is my way of proposing to you again.”
+          </p>
+          <p class="name-line">
+            With all my softness and overthinking, <span>Kishuu</span>.
+          </p>
+        </div>
+
+        <div class="shy-emoji-wrap">
+          <div class="shy-emoji">😊</div>
+          <p class="shy-caption">
+            This is exactly my face right now while sending you this page.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <p class="cta-text">
+          When you’re ready, click the button. It will open the actual proposal I made just for <strong>you</strong>.
+        </p>
+
+        <!-- Link to the proposal page -->
+        <a href="home.html" class="btn-open">
+          <span>Open my proposal</span>
+          <span class="btn-open-icon">➜</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
